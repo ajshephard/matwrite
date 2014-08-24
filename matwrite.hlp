@@ -1,0 +1,77 @@
+{smcl}
+{hline
+help fo {hi:matwrite}
+{hline}
+
+title:MAT-file export plugin}
+
+p 4 4 2}{cmdab:matwrite}
+[{it:anything}] {cmd:usin} {it:filename} [{cmd:if} {it:exp}] [{cmd:in} {it:range}]
+{cmd:[,}
+	{cmdab:at:rix}{cmd:(}{it:namelist}{cmd:)}
+	{cmd:replace}
+{cmd:]}
+
+title:Description}
+
+p 4 4 2}{cmd:matwrite} allows you to export data in the MATLAB MAT-file format from within
+Stata. Variables as specified in {it:anything} can be exported as column vectors, and group
+of variables can be exported as matrices. Stata matrices as specified in
+{cmdab:mat:rix}{cmd:(}{it:namelist}{cmd:)} are exported as matrices. 
+
+title:Options}
+
+p 4 8 2}{it:anything} can contain a {it:varlist}, as well as facilitating the export of a group of
+followed by a {it:varlist} contained within square brackets: {it:matrixname[varlist]}. For exampl,
+
+p 4 8 2}{cmdab:mat:rix}{cmd:(}{it:namelist}{cmd:)} specifies the Stata matrices that will be exported
+by {cmd:matwrite}. If any of the specified matrices do not exist, a warning message will be displayed,
+although an error will not be raised. 
+
+title:Notes}
+
+p 4 4 2}If {it:anything} is not specified, all variable in the open Stata dataset
+will be exported as column vectors. Similarly, if {cmdab:mat:rix}{cmd:(}{it:namelit}{cmd:)} is not
+specified, all Stata matrices will be exported.
+
+p 4 4 2}Missing values in both variables and matrices are recoded as positive infinity in MATLAB.
+
+p 4 4 2}String variables can not be exported as this is not allowed by the Stata plugin interface.
+
+p 4 4 2}Variable names and matrix names can not be longer than 19 characters as this is not
+supported by the Level 4 MAT-File format. A future version of {cmd:matwrite} will support th Level 5
+MAT-File format which does not impose this restriction.
+ 
+itle:Examples}
+
+p 4 4 2}{inp: . matwrite using c:\matlabfile,replace}
+
+p 4 4 2}{inp: . matwrite var1 var2 var3 using c:\matlabfile, mat(mat1 mat2) replace}
+
+p 4 4 2}{inp: . matwrite var1 if var2<=10 using c:\matlabfile, mat(mat1 mat2) replace}
+   
+ 4 2}{inp: . matwrite mymat1[var*] var1 var2 using c:\matlabfile, mat(mat1 mat2) replace}
+
+title:Acknowledgments}
+
+p 4 4 2}MATLAB is a registered trademark of The MathWorks, Inc. Sections of this code
+make use of the Stata plugin interface. 
+
+title:License}
+
+p 4 4 2}MATWRITE is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+p 4 4 2}MATWRITE is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See theGNU General Public License for more details.
+
+p 4 4 2}You should have received a copy of the GNU General Public License
+along with MATWRITE.  If not, see <http://www.gnu.org/licenses/>.
+
+title:Author}
+
+p 4 4 2}Andrew Shephard, University of Pennsylvania, US {browse "mailto:asheph@econ.upenn.edu"}.
+
